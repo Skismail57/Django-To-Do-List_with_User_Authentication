@@ -1,0 +1,62 @@
+# PostgreSQL backup CronJob (nightly at 02:00)
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: pg-backup
+  labels:
+    app: todolist
+    role: backup
+spec:
+  schedule: "0 2 * * *"  # Daily at 02:00 AM
+  concurrencyPolicy: Forbid
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          serviceAccountName: pg-backup-sa
+          restartPolicy: OnFailure
+          containers:
+            - name: backup
+              image: postgres:15
+              env:
+                - name: PGHOST
+                  value: "db"  # Matches the PostgreSQL service name
+                - name: PGPORT
+                  value: "5432"
+                - name: PGUSER
+                  valueFrom:
+                    secretKeyRef:
+                      name: todolist-secret
+                      key: DB_USER
+                - name: PGPASSWORD
+                  valueFrom:
+                    secretKeyRef:
+                      name: todolist-secret
+                      key: DB_PASSWORD
+                - name: PGDATABASE
+                  valueFrom:
+                    secretKeyRef:
+                      name: todolist-secret
+                      key: DB_NAME
+              command:
+                - /bin/sh
+                - -c
+                - |
+                  set -e
+                  TIMESTAMP=$(date +%F_%H%M%S)
+                  BACKUP_FILE="/backups/db_${TIMESTAMP}.sql"
+                  echo "Starting backup to ${BACKUP_FILE}..."
+                  pg_dump -Fc -f ${BACKUP_FILE}
+                  echo "Backup completed: $(ls -lh ${BACKUP_FILE})"
+                  # Keep last 7 backups
+                  ls -t /backups/db_*.sql | tail -n +8 | xargs -r rm -f
+              volumeMounts:
+                - name: backups
+                  mountPath: /backups
+          volumes:
+            - name: backups
+              persistentVolumeClaim:
+                claimName: pg-backup-pvc
+          securityContext:
+            runAsUser: 1000
+            fsGroup: 1000

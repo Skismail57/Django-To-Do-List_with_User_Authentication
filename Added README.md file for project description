@@ -1,0 +1,31 @@
+# 🚀 Internship DevOps Project
+
+This repository contains my **Internship DevOps Project**, where I practiced and implemented key DevOps tools and technologies. Each folder in the repository focuses on a specific DevOps concept such as CI/CD pipelines, infrastructure provisioning, containerization, automation, and more.
+
+---
+
+## 🧰 Tools & Technologies Used
+
+| Tool       | Description                                  |
+|------------|----------------------------------------------|
+| Jenkins    | CI/CD pipelines for automation               |
+| Terraform  | Infrastructure as Code (IaC) on AWS          |
+| Docker     | Containerization of applications             |
+| Ansible    | Configuration management                     |
+| Shell Scripting | Automation scripts for various tasks    |
+| Linux      | Basic Linux commands and administration      |
+| AWS        | Cloud provider for hosting infrastructure    |
+
+---
+
+## 📁 Folder Structure
+```
+InternshipProject/
+│
+├── Jenkins/       → Jenkins pipeline scripts
+├── Terraform/     → Terraform files to provision AWS EC2
+├── Docker/        → Dockerfiles and container tasks
+├── Ansible/       → Ansible playbooks and configuration
+├── Shell/         → Shell scripts for automation
+├── Linux/         → Linux command practice
+```

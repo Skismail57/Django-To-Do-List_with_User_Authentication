@@ -1,0 +1,426 @@
+/* Custom Admin Styles with Dark Theme */
+:root {
+  --primary-color: #1a73e8;
+  --secondary-color: #174ea6;
+  --accent-color: #4285f4;
+  --text-color: #ecf0f1;
+  --danger-color: #ea4335;
+  --success-color: #34a853;
+  --warning-color: #fbbc05;
+  --dark-bg: #1a1a1a;
+  --dark-bg-light: #2d2d2d;
+  --card-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+}
+
+/* Admin Header */
+#header {
+  background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+  color: var(--text-color);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  transition: all 0.3s ease;
+  padding: 15px 40px;
+  height: auto;
+  line-height: normal;
+  z-index: 10;
+}
+
+#branding h1 {
+  font-weight: 600;
+  font-size: 1.5rem;
+}
+
+#header a:link, #header a:visited {
+  color: var(--text-color);
+  transition: all 0.3s ease;
+}
+
+#header a:hover {
+  color: white;
+  text-decoration: none;
+  transform: translateY(-2px);
+}
+
+#user-tools {
+  font-size: 0.9rem;
+  position: absolute;
+  right: 40px;
+  top: 15px;
+  display: flex;
+  align-items: center;
+  background: rgba(0, 0, 0, 0.1);
+  padding: 5px 10px;
+  border-radius: 8px;
+  z-index: 100;
+}
+
+#user-tools a {
+  border-bottom: none;
+  padding: 6px 12px;
+  border-radius: 6px;
+  transition: all 0.3s ease;
+  margin-left: 8px;
+  background: rgba(255, 255, 255, 0.1);
+}
+
+#user-tools a:hover {
+  background: rgba(255, 255, 255, 0.2);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Dark Theme for Admin */
+body {
+  background: var(--dark-bg);
+  color: var(--text-color);
+  font-family: 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+}
+
+#container {
+  padding: 20px 40px;
+}
+
+.module h2, .module caption, .inline-group h2 {
+  background: white;
+  color: var(--primary-color);
+  border-radius: 8px 8px 0 0;
+  padding: 12px 15px;
+  font-weight: 600;
+  font-size: 1rem;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.module {
+  background: var(--dark-bg-light);
+  border-radius: 8px;
+  box-shadow: var(--card-shadow);
+  margin-bottom: 25px;
+  overflow: hidden;
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.module.selected {
+  background-color: var(--primary-color);
+  color: white;
+}
+
+.module:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+}
+
+
+
+/* Buttons */
+.button, input[type=submit], input[type=button], .submit-row input, a.button {
+  background: white;
+  color: var(--primary-color);
+  border-radius: 6px;
+  padding: 10px 18px;
+  border: 1px solid var(--primary-color);
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-transform: uppercase;
+  font-weight: 600;
+  font-size: 0.85rem;
+  letter-spacing: 0.5px;
+  box-shadow: 0 4px 6px rgba(66, 133, 244, 0.1);
+}
+
+.button:hover, input[type=submit]:hover, input[type=button]:hover, .submit-row input:hover, a.button:hover {
+  background: var(--primary-color);
+  color: white;
+  transform: translateY(-3px);
+  box-shadow: 0 6px 12px rgba(66, 133, 244, 0.4);
+}
+
+.button.default, input[type=submit].default, .submit-row input.default {
+  background: var(--success-color);
+  box-shadow: 0 4px 6px rgba(52, 168, 83, 0.3);
+}
+
+.button.default:hover, input[type=submit].default:hover, .submit-row input.default:hover {
+  background: #3cbc5c;
+  box-shadow: 0 6px 12px rgba(52, 168, 83, 0.4);
+}
+
+/* Delete button */
+.submit-row a.deletelink {
+  background: var(--danger-color);
+  box-shadow: 0 4px 6px rgba(234, 67, 53, 0.3);
+  transition: all 0.3s ease;
+}
+
+.submit-row a.deletelink:hover {
+  background: #f44336;
+  box-shadow: 0 6px 12px rgba(234, 67, 53, 0.4);
+}
+
+/* Form elements */
+input, textarea, select, .form-row p, form .button {
+  margin: 4px 0;
+  padding: 10px 15px;
+  border-radius: 6px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgba(45, 45, 45, 0.8);
+  color: var(--text-color);
+  transition: all 0.3s ease;
+}
+
+input:focus, textarea:focus, select:focus {
+  border-color: var(--accent-color);
+  box-shadow: 0 0 0 3px rgba(66, 133, 244, 0.25);
+  outline: none;
+}
+
+/* Fix overlapping elements */
+.admin-navigation {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 20px;
+  background: linear-gradient(135deg, var(--secondary-color) 0%, var(--primary-color) 100%);
+  margin: 0 0 25px 0;
+  border-radius: 8px;
+  box-shadow: var(--card-shadow);
+  position: relative;
+  z-index: 5;
+}
+
+.admin-navigation a {
+  color: var(--text-color);
+  text-decoration: none;
+  padding: 8px 15px;
+  border-radius: 6px;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  display: inline-flex;
+  align-items: center;
+  margin: 0 5px;
+}
+
+.admin-navigation a i {
+  margin-right: 8px;
+  font-size: 1.1rem;
+}
+
+.admin-navigation a:hover {
+  background: rgba(255, 255, 255, 0.15);
+  transform: translateY(-3px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.admin-navigation a.home-btn {
+  background: var(--accent-color);
+  box-shadow: 0 4px 8px rgba(66, 133, 244, 0.3);
+}
+
+.admin-navigation a.home-btn:hover {
+  background: #5a95f5;
+  box-shadow: 0 6px 12px rgba(66, 133, 244, 0.4);
+}
+
+/* Table styles */
+#changelist {
+  margin-top: 20px;
+}
+
+#changelist table {
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: var(--card-shadow);
+  border-collapse: separate;
+  border-spacing: 0;
+  width: 100%;
+}
+
+#changelist table thead th {
+  background: var(--secondary-color);
+  color: var(--text-color);
+  padding: 15px;
+  font-weight: 600;
+  text-transform: uppercase;
+  font-size: 0.8rem;
+  letter-spacing: 0.5px;
+}
+
+#changelist table tbody tr {
+  transition: all 0.3s ease;
+  background: var(--dark-bg-light);
+}
+
+#changelist table tbody tr:hover {
+  background: rgba(66, 133, 244, 0.1);
+}
+
+#changelist table tbody td {
+  padding: 12px 15px;
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+/* Pagination */
+.paginator {
+  margin: 25px 0;
+  font-size: 0.9rem;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.paginator a, .paginator .this-page {
+  padding: 10px 15px;
+  margin: 0 4px;
+  border-radius: 6px;
+  transition: all 0.3s ease;
+}
+
+.paginator a {
+  background: var(--dark-bg-light);
+  color: var(--text-color);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.paginator a:hover {
+  background: var(--accent-color);
+  color: white;
+  transform: translateY(-3px);
+  box-shadow: 0 4px 8px rgba(66, 133, 244, 0.3);
+}
+
+.paginator .this-page {
+  background: var(--accent-color);
+  color: white;
+  box-shadow: 0 4px 8px rgba(66, 133, 244, 0.3);
+}
+
+/* Advanced Animations */
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes slideInRight {
+  from { opacity: 0; transform: translateX(30px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes pulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+  100% { transform: scale(1); }
+}
+
+.module {
+  animation: fadeInUp 0.6s ease-out forwards;
+}
+
+.module:nth-child(odd) {
+  animation-delay: 0.1s;
+}
+
+.module:nth-child(even) {
+  animation-delay: 0.2s;
+}
+
+.form-row {
+  animation: slideInRight 0.5s ease-out forwards;
+  animation-delay: calc(var(--animation-order, 0) * 0.1s);
+}
+
+.submit-row {
+  animation: fadeInUp 0.5s ease-out forwards;
+  animation-delay: 0.3s;
+}
+
+/* Main Navigation */
+.main-nav-container {
+  position: absolute;
+  top: 15px;
+  left: 250px;
+  z-index: 100;
+}
+
+.main-navigation {
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+}
+
+.nav-btn {
+  display: inline-block;
+  padding: 6px 12px;
+  border-radius: 6px;
+  background: rgba(255, 255, 255, 0.1);
+  color: white;
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+
+.nav-btn:hover {
+  background: rgba(255, 255, 255, 0.2);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Active Sidebar Option */
+.module.selected, 
+.module.selected h2, 
+.module.selected caption {
+  background-color: var(--primary-color);
+  color: white;
+}
+
+/* Recent Actions Button */
+.recent-actions-btn-container {
+  position: absolute;
+  top: 200px;
+  right: 100px;
+  z-index: 900;
+}
+
+.recent-actions-btn {
+  display: inline-block;
+  padding: 10px 20px;
+  background-color: var(--primary-color);
+  color: white;
+  border-radius: 6px;
+  text-decoration: none;
+  font-weight: 600;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  transition: all 0.3s ease;
+}
+
+.recent-actions-btn:hover {
+  background-color: var(--secondary-color);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+}
+
+
+
+
+/* Dark mode toggle - Repositioned to avoid overlapping */
+.dark-mode-toggle {
+  position: fixed;
+  bottom: 20px;
+  left: 20px;
+  z-index: 1000;
+  background: var(--primary-color);
+  color: var(--text-color);
+  border: none;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  font-size: 1.2rem;
+}
+
+.dark-mode-toggle:hover {
+  transform: translateY(-5px);
+  background: var(--accent-color);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+}

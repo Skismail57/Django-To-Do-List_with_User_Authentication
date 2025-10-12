@@ -1,0 +1,68 @@
+# Example Job to restore PostgreSQL from a backup
+# Usage: 
+# 1. Update `BACKUP_FILENAME` to the backup file you want to restore from
+# 2. Run: kubectl apply -f pg-restore-job.yaml
+# 3. Monitor: kubectl logs -f job/pg-restore
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: pg-restore
+  labels:
+    app: todolist
+    role: restore
+spec:
+  template:
+    spec:
+      serviceAccountName: pg-backup-sa
+      restartPolicy: Never
+      containers:
+        - name: restore
+          image: postgres:15
+          env:
+            - name: PGHOST
+              value: "db"
+            - name: PGUSER
+              valueFrom:
+                secretKeyRef:
+                  name: todolist-secret
+                  key: DB_USER
+            - name: PGPASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: todolist-secret
+                  key: DB_PASSWORD
+            - name: PGDATABASE
+              valueFrom:
+                secretKeyRef:
+                  name: todolist-secret
+                  key: DB_NAME
+            - name: BACKUP_FILENAME
+              value: "db_$(date +%Y-%m-%d)_020000.sql"  # Example: db_2025-10-02_020000.sql - Update to actual backup file
+          command:
+            - /bin/sh
+            - -c
+            - |
+              set -e
+              echo "Restoring from ${BACKUP_FILENAME}..."
+              if [ ! -f "/backups/${BACKUP_FILENAME}" ]; then
+                echo "Error: Backup file not found: /backups/${BACKUP_FILENAME}"
+                echo "Available backups:"
+                ls -la /backups/
+                exit 1
+              fi
+              # Drop and recreate the database (adjust if you want to restore to a different DB)
+              dropdb -h db -U $PGUSER $PGDATABASE || true
+              createdb -h db -U $PGUSER $PGDATABASE
+              # Restore
+              pg_restore -h db -U $PGUSER -d $PGDATABASE "/backups/${BACKUP_FILENAME}"
+              echo "Restore completed!"
+          volumeMounts:
+            - name: backups
+              mountPath: /backups
+      volumes:
+        - name: backups
+          persistentVolumeClaim:
+            claimName: pg-backup-pvc
+      securityContext:
+        runAsUser: 1000
+        fsGroup: 1000

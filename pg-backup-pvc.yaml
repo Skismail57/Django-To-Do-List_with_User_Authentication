@@ -1,0 +1,24 @@
+# PersistentVolumeClaim for PostgreSQL backups
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: pg-backup-pvc
+  labels:
+    app: todolist
+    tier: backup
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 10Gi
+  storageClassName: standard  # Adjust based on your cluster's storage class
+---
+# ServiceAccount for backup/restore jobs
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: pg-backup-sa
+  labels:
+    app: todolist
+    role: backup

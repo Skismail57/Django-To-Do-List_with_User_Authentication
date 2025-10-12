@@ -1,0 +1,27 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: todolist-migrate
+  labels:
+    app: todolist
+spec:
+  template:
+    metadata:
+      labels:
+        app: todolist
+    spec:
+      restartPolicy: OnFailure
+      containers:
+        - name: migrate
+          image: docker.io/skport57/todolist-app:latest
+          imagePullPolicy: IfNotPresent
+          command: ["sh", "-c"]
+          args:
+            - python manage.py migrate --noinput
+          envFrom:
+            - configMapRef:
+                name: todolist-config
+            - secretRef:
+                name: todolist-secret
+      imagePullSecrets:
+        - name: icr-secret

@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Todo Details</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 20px auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            color: #007bff;
+        }
+
+        p {
+            margin: 10px 0;
+        }
+
+        .created {
+            font-style: italic;
+            color: #666;
+        }
+
+        .back-btn {
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .back-btn:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>{{ todo.title }}</h1>
+        <p>{{ todo.text }}</p>
+        <p class="created">Created on {{ todo.created_at }}</p>
+        <a href="{% url 'index' %}" class="back-btn">Back to Todo List</a>
+    </div>
+</body>
+</html>

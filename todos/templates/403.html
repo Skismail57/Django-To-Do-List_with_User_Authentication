@@ -1,0 +1,72 @@
+{% extends 'base.html' %}
+
+{% block title %}403 Forbidden - TaskMaster Pro{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-8 text-center">
+            <div class="error-page">
+                <h2 class="headline text-warning display-1">403</h2>
+                <div class="error-content">
+                    <h3><i class="fas fa-exclamation-triangle text-warning"></i> Access Denied</h3>
+                    <p class="lead">
+                        {{ message|default:"You don't have permission to access this page." }}
+                    </p>
+                    <p>
+                        If you believe this is an error, please contact the administrator.
+                    </p>
+                    <div class="mt-4">
+                        <a href="{% url 'task_list' %}" class="btn btn-primary me-2">
+                            <i class="fas fa-home me-2"></i>Return to Homepage
+                        </a>
+                        {% if not user.is_authenticated %}
+                            <a href="{% url 'login' %}" class="btn btn-outline-primary">
+                                <i class="fas fa-sign-in-alt me-2"></i>Login
+                            </a>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+.error-page {
+    padding: 40px 15px;
+    text-align: center;
+}
+
+.headline {
+    font-size: 6rem;
+    font-weight: 300;
+    line-height: 1.2;
+    margin-bottom: 1.5rem;
+}
+
+.error-content {
+    padding: 20px;
+    background: #f8f9fa;
+    border-radius: 5px;
+    margin-top: 20px;
+}
+
+.error-content h3 {
+    margin-top: 0;
+    color: #333;
+}
+
+.btn {
+    padding: 8px 20px;
+    border-radius: 4px;
+    text-decoration: none;
+    font-weight: 500;
+    transition: all 0.3s;
+}
+
+.btn i {
+    margin-right: 5px;
+}
+</style>
+{% endblock %}

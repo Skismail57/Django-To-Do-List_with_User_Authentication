@@ -1,0 +1,90 @@
+{% extends 'base.html' %}
+
+{% block title %}TaskMaster Pro - {% if form.instance.pk %}Edit Task{% else %}Create New Task{% endif %}{% endblock %}
+
+{% block content %}
+  <div class="container py-4">
+    <div class="row mb-4">
+      <div class="col-md-8">
+        <h1 class="display-5 fw-bold" data-aos="fade-right">
+          <i class="fas {% if form.instance.pk %}fa-edit{% else %}fa-plus-circle{% endif %} me-2"></i>
+          {% if form.instance.pk %}Edit Task{% else %}Create New Task{% endif %}
+        </h1>
+      </div>
+      <div class="col-md-4 text-md-end" data-aos="fade-left">
+        <a href="{% url 'task_list' %}" class="btn btn-secondary">
+          <i class="fas fa-arrow-left me-2"></i>Back to Tasks
+        </a>
+      </div>
+    </div>
+
+    <div class="card shadow-sm mb-4" data-aos="fade-up">
+      <div class="card-body p-4">
+        <form method="POST" class="needs-validation" novalidate>
+          {% csrf_token %}
+          
+          <div class="mb-3">
+            <label for="id_title" class="form-label fw-bold">Title</label>
+            {{ form.title.errors }}
+            <div class="input-group">
+              <span class="input-group-text"><i class="fas fa-tasks"></i></span>
+              {{ form.title|safe }}
+            </div>
+            <div class="form-text">Enter a clear, concise task title</div>
+          </div>
+          
+          <div class="mb-3">
+            <label for="id_description" class="form-label fw-bold">Description</label>
+            {{ form.description.errors }}
+            {{ form.description|safe }}
+            <div class="form-text">Provide details about this task</div>
+          </div>
+          
+          <div class="mb-3 form-check">
+            {{ form.completed|safe }}
+            <label class="form-check-label" for="id_completed">
+              Mark as completed
+            </label>
+          </div>
+          
+          <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+            <button type="submit" class="btn btn-primary btn-lg px-4">
+              <i class="fas fa-save me-2"></i>Save Task
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+{% endblock %}
+
+{% block extra_scripts %}
+<script>
+  // Add animation to form inputs
+  const formInputs = document.querySelectorAll('input, textarea');
+  formInputs.forEach(input => {
+    // Add Bootstrap classes
+    if (input.type !== 'checkbox') {
+      input.classList.add('form-control');
+    } else {
+      input.classList.add('form-check-input');
+    }
+    
+    // Add focus animation
+    input.addEventListener('focus', function() {
+      this.style.boxShadow = '0 0 0 0.25rem rgba(13, 110, 253, 0.25)';
+      this.style.transition = 'all 0.2s ease-in-out';
+    });
+    
+    input.addEventListener('blur', function() {
+      this.style.boxShadow = 'none';
+    });
+  });
+  
+  // Add textarea styling
+  const textareas = document.querySelectorAll('textarea');
+  textareas.forEach(textarea => {
+    textarea.style.minHeight = '120px';
+  });
+</script>
+{% endblock %}

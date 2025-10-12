@@ -1,0 +1,23 @@
+﻿apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: todolist-ingress
+  annotations:
+    nginx.ingress.kubernetes.io/rewrite-target: /
+    cert-manager.io/cluster-issuer: "letsencrypt-prod"
+spec:
+  tls:
+  - hosts:
+    - yourdomain.com  # Replace with your actual domain
+    secretName: todolist-tls
+  rules:
+  - host: yourdomain.com  # Must match the domain above
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: todolist-service
+            port:
+              number: 80

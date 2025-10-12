@@ -1,0 +1,5 @@
+Django
+mysqlclient
+python-decouple
+whitenoise
+waitress

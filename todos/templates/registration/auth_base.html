@@ -1,0 +1,159 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}TaskMaster Pro - Authentication{% endblock %}</title>
+    
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Custom CSS -->
+    <style>
+        :root {
+            --primary-color: #4e73df;
+            --secondary-color: #5a5c69;
+            --success-color: #1cc88a;
+            --danger-color: #e74a3b;
+            --warning-color: #f6c23e;
+            --info-color: #36b9cc;
+            --light-color: #f8f9fc;
+            --dark-color: #5a5c69;
+        }
+        
+        body {
+            background-color: #f8f9fc;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+        }
+        
+        .auth-container {
+            max-width: 400px;
+            width: 100%;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+        
+        .auth-card {
+            border: none;
+            border-radius: 0.35rem;
+            box-shadow: 0 0.15rem 1.75rem 0 rgba(58, 59, 69, 0.15);
+            overflow: hidden;
+        }
+        
+        .auth-header {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 1.5rem;
+            text-align: center;
+        }
+        
+        .auth-body {
+            background-color: white;
+            padding: 2rem;
+        }
+        
+        .form-control:focus {
+            border-color: #bac8f3;
+            box-shadow: 0 0 0 0.2rem rgba(78, 115, 223, 0.25);
+        }
+        
+        .btn-primary {
+            background-color: var(--primary-color);
+            border-color: var(--primary-color);
+        }
+        
+        .btn-primary:hover {
+            background-color: #2e59d9;
+            border-color: #2653d4;
+        }
+        
+        .auth-footer {
+            text-align: center;
+            padding: 1rem;
+            background-color: #f8f9fc;
+            border-top: 1px solid #e3e6f0;
+            font-size: 0.875rem;
+            color: #858796;
+        }
+        
+        .form-floating > label {
+            padding: 0.5rem 0.75rem;
+        }
+        
+        .form-floating > .form-control:focus ~ label,
+        .form-floating > .form-control:not(:placeholder-shown) ~ label,
+        .form-floating > .form-select ~ label {
+            opacity: 0.65;
+            transform: scale(0.85) translateY(-0.5rem) translateX(0.15rem);
+        }
+    </style>
+    
+    {% block extra_css %}{% endblock %}
+</head>
+<body>
+    <div class="auth-container">
+        <div class="auth-card">
+            <div class="auth-header">
+                <h4><i class="fas fa-tasks me-2"></i>TaskMaster Pro</h4>
+                <p class="mb-0">{% block auth_title %}Secure Authentication{% endblock %}</p>
+            </div>
+            
+            <div class="auth-body">
+                {% if messages %}
+                    {% for message in messages %}
+                        <div class="alert alert-{{ message.tags }} alert-dismissible fade show">
+                            {{ message }}
+                            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                        </div>
+                    {% endfor %}
+                {% endif %}
+                
+                {% block content %}{% endblock %}
+            </div>
+            
+            <div class="auth-footer">
+                <p class="mb-0">
+                    <i class="fas fa-shield-alt me-1"></i> Secure Connection
+                    <span class="mx-2">•</span>
+                    <i class="fas fa-lock me-1"></i> Encrypted
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <!-- Custom JavaScript -->
+    <script>
+        // Enable Bootstrap tooltips
+        var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'));
+        var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
+            return new bootstrap.Tooltip(tooltipTriggerEl);
+        });
+        
+        // Enable Bootstrap popovers
+        var popoverTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="popover"]'));
+        var popoverList = popoverTriggerList.map(function (popoverTriggerEl) {
+            return new bootstrap.Popover(popoverTriggerEl);
+        });
+        
+        // Auto-hide alerts after 5 seconds
+        window.setTimeout(function() {
+            var alerts = document.querySelectorAll('.alert');
+            alerts.forEach(function(alert) {
+                var bsAlert = new bootstrap.Alert(alert);
+                bsAlert.close();
+            });
+        }, 5000);
+    </script>
+    
+    {% block extra_js %}{% endblock %}
+</body>
+</html>
