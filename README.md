@@ -4,6 +4,21 @@
   <img src="Django-To-Do-List_with_User_Authentication.jpg" alt="Django-To-Do-List_with_User_Authentication" style="width: 100%; max-width: 1000px; border-radius: 10px; box-shadow: 0 4px 8px rgba(0,0,0,0.1);">
 </div>
 
+
+# 📝 Django To-Do List
+
+A secure Django-based To-Do List application with user authentication, task management, and responsive design. Features include user registration, login/logout, CRUD operations for tasks, and custom error pages. Built with Django 5.0, HTML5, CSS3, and SQLite/PostgreSQL support. Ready for deployment with Docker.
+
+![Django](https://img.shields.io/badge/Django-5.0-green?logo=django&logoColor=white)
+![Python](https://img.shields.io/badge/Python-3.10+-blue?logo=python&logoColor=white)
+![HTML5](https://img.shields.io/badge/HTML5-orange?logo=html5&logoColor=white)
+![CSS3](https://img.shields.io/badge/CSS3-blue?logo=css3&logoColor=white)
+![SQLite](https://img.shields.io/badge/SQLite-Database-003B57?logo=sqlite&logoColor=white)
+![PostgreSQL](https://img.shields.io/badge/PostgreSQL-Supported-336791?logo=postgresql&logoColor=white)
+![Docker](https://img.shields.io/badge/Docker-Ready-2496ED?logo=docker&logoColor=white)
+![Authentication](https://img.shields.io/badge/User-Authentication-success)
+![CRUD](https://img.shields.io/badge/CRUD-Operations-blue)
+
 <div align="center" style="margin-top: 20px; margin-bottom: 30px;">
   <a href="#features">Features</a> •
   <a href="#tech-stack">Tech Stack</a> •
