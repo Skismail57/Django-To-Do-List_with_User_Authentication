@@ -1,7 +1,7 @@
 # 🚀 Django To-Do List with User Authentication
 
 <div align="center">
-  <img src="screenshots/cover.png.png" alt="Django To-Do List" style="width: 100%; max-width: 1000px; border-radius: 10px; box-shadow: 0 4px 8px rgba(0,0,0,0.1);">
+  <img src="Django-To-Do-List_with_User_Authentication.jpg" alt="Django-To-Do-List_with_User_Authentication" style="width: 100%; max-width: 1000px; border-radius: 10px; box-shadow: 0 4px 8px rgba(0,0,0,0.1);">
 </div>
 
 <div align="center" style="margin-top: 20px; margin-bottom: 30px;">
